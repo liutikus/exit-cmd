@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "top_products",
+  "info": {
+    "singularName": "top-product",
+    "pluralName": "top-products",
+    "displayName": "Top Product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
+    }
+  }
+}

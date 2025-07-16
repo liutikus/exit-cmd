@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "main_page_videos",
+  "info": {
+    "singularName": "main-page-video",
+    "pluralName": "main-page-videos",
+    "displayName": "Main Page Video"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files",
+        "videos"
+      ]
+    }
+  }
+}

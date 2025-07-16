@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "shop_page_heroes",
+  "info": {
+    "singularName": "shop-page-hero",
+    "pluralName": "shop-page-heroes",
+    "displayName": "Shop Page Hero"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "highlighted_title": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    }
+  }
+}

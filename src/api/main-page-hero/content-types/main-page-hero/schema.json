@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "main_page_heroes",
+  "info": {
+    "singularName": "main-page-hero",
+    "pluralName": "main-page-heroes",
+    "displayName": "Main Page Hero"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "sub_title": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    }
+  }
+}
