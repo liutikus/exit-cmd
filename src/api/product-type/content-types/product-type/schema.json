@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "brands",
+  "collectionName": "product_types",
   "info": {
-    "singularName": "brand",
-    "pluralName": "brands",
-    "displayName": "Brand"
+    "singularName": "product-type",
+    "pluralName": "product-types",
+    "displayName": "Product Type"
   },
   "options": {
     "draftAndPublish": true
@@ -15,16 +15,16 @@
       "type": "string",
       "required": true
     },
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product",
-      "mappedBy": "brand"
-    },
     "slug": {
       "type": "uid",
       "targetField": "name",
       "required": true
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "product_type"
     }
   }
 }

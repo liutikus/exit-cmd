@@ -101,6 +101,12 @@
       "relation": "manyToOne",
       "target": "api::size.size",
       "inversedBy": "products"
+    },
+    "product_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-type.product-type",
+      "inversedBy": "products"
     }
   }
 }

@@ -24,6 +24,11 @@
       "relation": "manyToMany",
       "target": "api::product.product",
       "inversedBy": "colors"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
     }
   }
 }
