@@ -37,9 +37,9 @@
         "files"
       ]
     },
-    "category": {
+    "categories": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::category.category",
       "inversedBy": "products"
     },
@@ -107,6 +107,16 @@
       "relation": "manyToOne",
       "target": "api::product-type.product-type",
       "inversedBy": "products"
+    },
+    "product_details": {
+      "type": "component",
+      "component": "details.product-details",
+      "repeatable": true
+    },
+    "memory_options": {
+      "type": "component",
+      "component": "details.memory-option",
+      "repeatable": true
     }
   }
 }

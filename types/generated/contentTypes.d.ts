@@ -486,7 +486,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     parent: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
-    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     subCategories: Schema.Attribute.Relation<
@@ -589,6 +589,38 @@ export interface ApiMainPageVideoMainPageVideo extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiProductPageVideoProductPageVideo
+  extends Struct.SingleTypeSchema {
+  collectionName: 'product_page_videos';
+  info: {
+    displayName: 'Product Page Video';
+    pluralName: 'product-page-videos';
+    singularName: 'product-page-video';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-page-video.product-page-video'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subTitleText: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    video: Schema.Attribute.Media<'files' | 'videos'> &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface ApiProductTypeProductType extends Struct.CollectionTypeSchema {
   collectionName: 'product_types';
   info: {
@@ -631,7 +663,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   };
   attributes: {
     brand: Schema.Attribute.Relation<'manyToOne', 'api::brand.brand'>;
-    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
     colors: Schema.Attribute.Relation<'manyToMany', 'api::color.color'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -661,6 +696,11 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     mainImage: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
+    memory_options: Schema.Attribute.Component<'details.memory-option', true>;
+    product_details: Schema.Attribute.Component<
+      'details.product-details',
+      true
+    >;
     product_type: Schema.Attribute.Relation<
       'manyToOne',
       'api::product-type.product-type'
@@ -1285,6 +1325,7 @@ declare module '@strapi/strapi' {
       'api::color.color': ApiColorColor;
       'api::main-page-hero.main-page-hero': ApiMainPageHeroMainPageHero;
       'api::main-page-video.main-page-video': ApiMainPageVideoMainPageVideo;
+      'api::product-page-video.product-page-video': ApiProductPageVideoProductPageVideo;
       'api::product-type.product-type': ApiProductTypeProductType;
       'api::product.product': ApiProductProduct;
       'api::shop-page-hero.shop-page-hero': ApiShopPageHeroShopPageHero;

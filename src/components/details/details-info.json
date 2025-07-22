@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_details_details_infos",
+  "info": {
+    "displayName": "details_info"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

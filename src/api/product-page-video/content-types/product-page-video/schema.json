@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "product_page_videos",
+  "info": {
+    "singularName": "product-page-video",
+    "pluralName": "product-page-videos",
+    "displayName": "Product Page Video"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subTitleText": {
+      "type": "string",
+      "required": true
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files",
+        "videos"
+      ]
+    }
+  }
+}

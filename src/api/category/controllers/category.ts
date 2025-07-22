@@ -16,7 +16,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       for (const sub of category.subCategories || []) {
         const count = await strapi.entityService.count('api::product.product', {
           filters: {
-            category: { id: sub.id }
+            categories: { id: sub.id }
           }
         });
 
@@ -24,7 +24,7 @@ export default factories.createCoreController('api::category.category', ({ strap
 
         subCounts.push({
           id: sub.id,
-          slug: sub.slug, // ✅ include slug here
+          slug: sub.slug, 
           name: sub.name,
           productCount: count,
           children
@@ -50,7 +50,7 @@ export default factories.createCoreController('api::category.category', ({ strap
 
     const total = await strapi.entityService.count('api::product.product', {
       filters: {
-        category: {
+        categories: {
           id: { $in: allCategoryIds }
         }
       }
