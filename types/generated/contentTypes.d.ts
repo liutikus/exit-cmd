@@ -701,6 +701,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'details.product-details',
       true
     >;
+    product_features: Schema.Attribute.Component<
+      'details.product-features',
+      true
+    >;
     product_type: Schema.Attribute.Relation<
       'manyToOne',
       'api::product-type.product-type'
@@ -806,6 +810,36 @@ export interface ApiTopProductTopProduct extends Struct.SingleTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTradeInPageVideoTradeInPageVideo
+  extends Struct.SingleTypeSchema {
+  collectionName: 'trade_in_page_videos';
+  info: {
+    displayName: 'Trade In Page Video';
+    pluralName: 'trade-in-page-videos';
+    singularName: 'trade-in-page-video';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::trade-in-page-video.trade-in-page-video'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    video: Schema.Attribute.Media<'files' | 'videos'> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -1331,6 +1365,7 @@ declare module '@strapi/strapi' {
       'api::shop-page-hero.shop-page-hero': ApiShopPageHeroShopPageHero;
       'api::size.size': ApiSizeSize;
       'api::top-product.top-product': ApiTopProductTopProduct;
+      'api::trade-in-page-video.trade-in-page-video': ApiTradeInPageVideoTradeInPageVideo;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

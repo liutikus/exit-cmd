@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_details_product_features",
+  "info": {
+    "displayName": "Product Features"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "description": {
+      "type": "component",
+      "component": "details.features-info",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

@@ -11,6 +11,16 @@ export interface DetailsDetailsInfo extends Struct.ComponentSchema {
   };
 }
 
+export interface DetailsFeaturesInfo extends Struct.ComponentSchema {
+  collectionName: 'components_details_features_infos';
+  info: {
+    displayName: 'Features Info';
+  };
+  attributes: {
+    description: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface DetailsMemoryOption extends Struct.ComponentSchema {
   collectionName: 'components_details_memory_options';
   info: {
@@ -34,12 +44,26 @@ export interface DetailsProductDetails extends Struct.ComponentSchema {
   };
 }
 
+export interface DetailsProductFeatures extends Struct.ComponentSchema {
+  collectionName: 'components_details_product_features';
+  info: {
+    displayName: 'Product Features';
+  };
+  attributes: {
+    description: Schema.Attribute.Component<'details.features-info', true> &
+      Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images' | 'files'>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'details.details-info': DetailsDetailsInfo;
+      'details.features-info': DetailsFeaturesInfo;
       'details.memory-option': DetailsMemoryOption;
       'details.product-details': DetailsProductDetails;
+      'details.product-features': DetailsProductFeatures;
     }
   }
 }
