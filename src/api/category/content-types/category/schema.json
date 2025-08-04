@@ -37,6 +37,12 @@
       "relation": "oneToMany",
       "target": "api::category.category",
       "mappedBy": "parent"
+    },
+    "device_models": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::device-model.device-model",
+      "mappedBy": "categories"
     }
   }
 }

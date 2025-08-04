@@ -479,6 +479,10 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    device_models: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::device-model.device-model'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -522,6 +526,74 @@ export interface ApiColorColor extends Struct.CollectionTypeSchema {
     products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDeviceModelDeviceModel extends Struct.CollectionTypeSchema {
+  collectionName: 'device_models';
+  info: {
+    displayName: 'DeviceModel';
+    pluralName: 'device-models';
+    singularName: 'device-model';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::device-model.device-model'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInstallmentInstallment extends Struct.CollectionTypeSchema {
+  collectionName: 'installments';
+  info: {
+    displayName: 'Installment';
+    pluralName: 'installments';
+    singularName: 'installment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    interest_rate: Schema.Attribute.Integer & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::installment.installment'
+    > &
+      Schema.Attribute.Private;
+    number_of_installments: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -840,6 +912,41 @@ export interface ApiTradeInPageVideoTradeInPageVideo
       Schema.Attribute.Private;
     video: Schema.Attribute.Media<'files' | 'videos'> &
       Schema.Attribute.Required;
+  };
+}
+
+export interface ApiTradeInRequestTradeInRequest
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'trade_in_requests';
+  info: {
+    displayName: 'Trade In Request';
+    pluralName: 'trade-in-requests';
+    singularName: 'trade-in-request';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.String;
+    color: Schema.Attribute.String;
+    configuration: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    deviceModel: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::trade-in-request.trade-in-request'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    subCategory: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1357,6 +1464,8 @@ declare module '@strapi/strapi' {
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
       'api::color.color': ApiColorColor;
+      'api::device-model.device-model': ApiDeviceModelDeviceModel;
+      'api::installment.installment': ApiInstallmentInstallment;
       'api::main-page-hero.main-page-hero': ApiMainPageHeroMainPageHero;
       'api::main-page-video.main-page-video': ApiMainPageVideoMainPageVideo;
       'api::product-page-video.product-page-video': ApiProductPageVideoProductPageVideo;
@@ -1366,6 +1475,7 @@ declare module '@strapi/strapi' {
       'api::size.size': ApiSizeSize;
       'api::top-product.top-product': ApiTopProductTopProduct;
       'api::trade-in-page-video.trade-in-page-video': ApiTradeInPageVideoTradeInPageVideo;
+      'api::trade-in-request.trade-in-request': ApiTradeInRequestTradeInRequest;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

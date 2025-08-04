@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "device_models",
+  "info": {
+    "singularName": "device-model",
+    "pluralName": "device-models",
+    "displayName": "DeviceModel"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "device_models"
+    }
+  }
+}
